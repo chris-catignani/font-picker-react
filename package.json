@@ -32,7 +32,6 @@
 		"start:ts": "rollup --config --sourcemap --watch",
 		"start:storybook": "start-storybook --port 3000",
 		"build": "run-s build:*",
-		"build:clean": "rm -rf ./dist/ && mkdir ./dist/",
 		"build:ts": "rollup --config",
 		"test": "tsc --noEmit",
 		"format": "prettier --write",
@@ -137,10 +136,5 @@
 			"yarn format",
 			"git add"
 		]
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "yarn test && lint-staged"
-		}
 	}
 }
