@@ -24,9 +24,6 @@
 	"main": "./dist/FontPicker.js",
 	"module": "./dist/FontPicker.es.js",
 	"types": "./dist/FontPicker.d.ts",
-	"files": [
-		"./dist/"
-	],
 	"scripts": {
 		"start": "npm-run-all build:clean build:ts --parallel start:*",
 		"start:ts": "rollup --config --sourcemap --watch",
