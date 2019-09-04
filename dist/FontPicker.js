@@ -1,11 +1,10 @@
+'use strict';
 
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex.default : ex; }
-
-const fontManager = require('@samuelmeuli/font-manager');
-const React = require('react');
-
-const React__default = _interopDefault(React);
+var fontManager = require('@samuelmeuli/font-manager');
+var React = require('react');
+var React__default = _interopDefault(React);
 
 function getFontId(fontFamily) {
     return fontFamily.replace(/\s+/g, "-").toLowerCase();
@@ -23,7 +22,6 @@ class FontPicker extends React.PureComponent {
         this.setActiveFontFamily = this.setActiveFontFamily.bind(this);
         this.toggleExpanded = this.toggleExpanded.bind(this);
     }
-
     componentDidUpdate(prevProps) {
         const { activeFontFamily, onChange } = this.props;
         if (activeFontFamily !== prevProps.activeFontFamily) {
@@ -33,10 +31,12 @@ class FontPicker extends React.PureComponent {
             this.fontManager.setOnChange(onChange);
         }
     }
-
     setFontManager() {
         if (this.props.fontManager) {
             this.fontManager = this.props.fontManager;
+            this.setState({
+                loadingStatus: "finished",
+            });
             return;
         }
         const { apiKey, activeFontFamily, pickerId, families, categories, scripts, variants, limit, sort, onChange, } = this.props;
@@ -65,7 +65,6 @@ class FontPicker extends React.PureComponent {
             console.error(err);
         });
     }
-
     onClose(e) {
         let targetEl = e.target;
         const fontPickerEl = document.getElementById(`font-picker${this.fontManager.selectorSuffix}`);
@@ -82,9 +81,8 @@ class FontPicker extends React.PureComponent {
             }
         }
     }
-
     onSelection(e) {
-        const {target} = e;
+        const target = e.target;
         const activeFontFamily = target.textContent;
         if (!activeFontFamily) {
             throw Error(`Missing font family in clicked font button`);
@@ -92,11 +90,9 @@ class FontPicker extends React.PureComponent {
         this.setActiveFontFamily(activeFontFamily);
         this.toggleExpanded();
     }
-
     setActiveFontFamily(activeFontFamily) {
         this.fontManager.setActiveFont(activeFontFamily);
     }
-
     generateFontList(fonts) {
         const { activeFontFamily } = this.props;
         const { loadingStatus } = this.state;
@@ -110,7 +106,6 @@ class FontPicker extends React.PureComponent {
                 React__default.createElement("button", { type: "button", id: `font-button-${fontId}${this.fontManager.selectorSuffix}`, className: `font-button ${isActive ? "active-font" : ""}`, onClick: this.onSelection, onKeyPress: this.onSelection }, font.family)));
         })));
     }
-
     toggleExpanded() {
         const { expanded } = this.state;
         if (expanded) {
@@ -126,7 +121,6 @@ class FontPicker extends React.PureComponent {
             document.addEventListener("click", this.onClose);
         }
     }
-
     render() {
         const { activeFontFamily, sort } = this.props;
         const { expanded, loadingStatus } = this.state;
