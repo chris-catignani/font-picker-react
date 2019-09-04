@@ -37,8 +37,6 @@ class FontPicker extends React.PureComponent {
             setTimeout(() => {
                 this.setState({
                     loadingStatus: "finished",
-                }, () => {
-                    console.log('status should be finished');
                 });
             }, 500);
             return;
