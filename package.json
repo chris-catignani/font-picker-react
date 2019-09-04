@@ -25,7 +25,7 @@
 	"module": "./dist/FontPicker.es.js",
 	"types": "./dist/FontPicker.d.ts",
 	"files": [
-		"./dist/"
+		"./src/"
 	],
 	"scripts": {
 		"start": "npm-run-all build:clean build:ts --parallel start:*",
