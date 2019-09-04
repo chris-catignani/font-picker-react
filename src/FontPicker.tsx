@@ -96,6 +96,9 @@ export default class FontPicker extends PureComponent<Props, State> {
 	setFontManager(): void {
 		if (this.props.fontManager) {
 			this.fontManager = this.props.fontManager;
+			this.setState({
+				loadingStatus: "finished",
+			});
 			return;
 		}
 
