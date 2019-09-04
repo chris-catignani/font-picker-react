@@ -34,6 +34,9 @@ class FontPicker extends React.PureComponent {
     setFontManager() {
         if (this.props.fontManager) {
             this.fontManager = this.props.fontManager;
+            if (this.props.onChange) {
+                this.fontManager.setOnChange(this.props.onChange);
+            }
             setTimeout(() => {
                 this.setState({
                     loadingStatus: "finished",
